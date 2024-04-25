@@ -25,5 +25,5 @@ class CashCardController {
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }   
 }
