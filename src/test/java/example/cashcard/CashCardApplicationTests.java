@@ -36,4 +36,12 @@ class CashCardApplicationTests {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
         assertThat(response.getBody()).isBlank();
     }
+
+    @Test
+    void shouldCreateCashCard(){
+        CashCard cashCard = new CashCard(null,250.00);
+
+restTemplate.postForEntity("/cashcards", cashCard,void.class);
+        
+    }
 }
