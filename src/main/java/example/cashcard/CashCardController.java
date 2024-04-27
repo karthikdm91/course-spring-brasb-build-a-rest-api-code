@@ -4,8 +4,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.util.Optional;
@@ -29,9 +31,14 @@ class CashCardController {
         }
     }   
         @PostMapping
-        private ResponseEntity<Void> saveCashCard(){
-             //cashCardRepository cashCardRepo = 
-            return ResponseEntity.created(URI.create("/FutureURI")).build();
+        private ResponseEntity<Void> saveCashCard(@RequestBody CashCard newCashCard , UriComponentsBuilder ucb){
+              CashCard savedCashCard = cashCardRepository.save(newCashCard);
+              URI locationOfNewCashCard = ucb
+              .path("cashcards/{id}")
+              .buildAndExpand(savedCashCard.id())
+              .toUri();
+              System.out.println("NEWURL" + locationOfNewCashCard);
+     return ResponseEntity.created(locationOfNewCashCard).build();
         }
 
 }
