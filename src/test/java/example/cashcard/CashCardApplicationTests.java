@@ -42,8 +42,9 @@ class CashCardApplicationTests {
         CashCard cashCard = new CashCard(null,250.00);
         ResponseEntity<Void> resonseEntity = restTemplate.postForEntity("/cashcards", cashCard,Void.class);
         assertThat(resonseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-        System.out.println("Resp body" + resonseEntity.getHeaders());
-        DocumentContext documentContext = JsonPath.parse(resonseEntity.getBody());
+        System.out.println("Resp body" + resonseEntity.getHeaders().getLocation());
+        ResponseEntity respInside = restTemplate.getForEntity(resonseEntity.getHeaders().getLocation(),String.class);
+        DocumentContext documentContext = JsonPath.parse(respInside.getBody());
         Number id = documentContext.read("$.id");
         assertThat(id).isNotNull();
     } 
