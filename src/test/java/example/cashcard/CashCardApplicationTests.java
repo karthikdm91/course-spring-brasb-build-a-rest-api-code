@@ -41,7 +41,7 @@ class CashCardApplicationTests {
     void shouldCreateCashCard(){
         CashCard cashCard = new CashCard(null,250.00);
 
-restTemplate.postForEntity("/cashcards", cashCard,void.class);
-        
+        ResponseEntity<Void> resonseEntity = restTemplate.postForEntity("/cashcards", cashCard,void.class);
+        assertThat(resonseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     } 
 }
