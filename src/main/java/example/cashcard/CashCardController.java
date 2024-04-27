@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
 import java.util.Optional;
 
 @RestController
@@ -28,6 +29,9 @@ class CashCardController {
         }
     }   
         @PostMapping
-        private ResponseEntity<> 
+        private ResponseEntity<Void> saveCashCard(){
+             //cashCardRepository cashCardRepo = 
+            return ResponseEntity.created(URI.create("/Future URI")).build();
+        }
 
 }
