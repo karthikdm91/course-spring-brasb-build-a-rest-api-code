@@ -43,5 +43,5 @@ class CashCardApplicationTests {
 
 restTemplate.postForEntity("/cashcards", cashCard,void.class);
         
-    }
+    } 
 }
