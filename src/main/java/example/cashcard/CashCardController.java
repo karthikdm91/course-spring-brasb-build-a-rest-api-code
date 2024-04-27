@@ -31,7 +31,7 @@ class CashCardController {
         @PostMapping
         private ResponseEntity<Void> saveCashCard(){
              //cashCardRepository cashCardRepo = 
-            return ResponseEntity.created(URI.create("/Future URI")).build();
+            return ResponseEntity.created(URI.create("/FutureURI")).build();
         }
 
 }
